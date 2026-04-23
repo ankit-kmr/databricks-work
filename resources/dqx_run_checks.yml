@@ -1,0 +1,36 @@
+resources:
+  jobs:
+    DQX_Run_Checks:
+      name: DQX_Run_Checks
+      email_notifications:
+        on_success:
+          - dev.databricks26@gmail.com
+        on_failure:
+          - dev.databricks26@gmail.com
+      tasks:
+        - task_key: run_checks
+          notebook_task:
+            notebook_path: ../databricks-work/notebooks/dqx_apply_checks.ipynb
+            source: WORKSPACE
+      queue:
+        enabled: true
+      parameters:
+        - name: bz_schema_name
+          default: dqx_bronze
+        - name: catalog_name
+          default: dqx_sandbox
+        - name: config_schema_name
+          default: dqx_config
+        - name: email_recipient
+          default: dev.databricks26@gmail.com
+        - name: email_sender
+          default: dev.databricks26@gmail.com
+        - name: table_name
+          default: customer
+        - name: target_schema_name
+          default: dqx_silver
+      environments:
+        - environment_key: run_checks_environment
+          spec:
+            environment_version: "4"
+      performance_target: PERFORMANCE_OPTIMIZED
