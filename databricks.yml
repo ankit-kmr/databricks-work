@@ -2,7 +2,6 @@ bundle:
   name: my_bundle_test
 
 include:
-  - resources/*.yml
   - resources/jobs/*.yml
 
 targets:

@@ -10,7 +10,7 @@ resources:
       tasks:
         - task_key: run_checks
           notebook_task:
-            notebook_path: ./notebooks/testbook.ipynb
+            notebook_path: notebooks/testbook.ipynb
             source: WORKSPACE
       queue:
         enabled: true
