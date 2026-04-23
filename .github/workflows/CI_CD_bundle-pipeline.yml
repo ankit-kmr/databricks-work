@@ -1,0 +1,33 @@
+name: "Deploy Databricks Asset Bundle"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: "Deploy Bundle"
+    runs-on: ubuntu-latest
+
+    # Set authentication environment variables for the Databricks CLI
+    env:
+      DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+      DATABRICKS_CLIENT_ID: ${{ secrets.DATABRICKS_CLIENT_ID }}
+      DATABRICKS_CLIENT_SECRET: ${{ secrets.DATABRICKS_CLIENT_SECRET }}
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # Install the Databricks CLI
+      - name: Setup Databricks CLI
+        uses: databricks/setup-cli@main
+
+      # Validate the bundle before deploying
+      - name: Validate Bundle
+        run: databricks bundle validate -t dev
+
+      # Deploy the bundle to the 'prod' target
+      - name: Deploy Bundle
+        run: databricks bundle deploy -t dev
