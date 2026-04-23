@@ -21,19 +21,14 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v5
 
-      - name: Print Variables
-        run: |
-          echo "Databricks Host: $DATABRICKS_HOST"
-          echo "Client ID: $DATABRICKS_CLIENT_ID"
+      # Install the Databricks CLI
+      - name: Setup Databricks CLI
+        uses: databricks/setup-cli@main
 
-      # # Install the Databricks CLI
-      # - name: Setup Databricks CLI
-      #   uses: databricks/setup-cli@main
+      # Validate the bundle before deploying
+      - name: Validate Bundle
+        run: databricks bundle validate -t dev
 
-      # # Validate the bundle before deploying
-      # - name: Validate Bundle
-      #   run: databricks bundle validate -t dev
-
-      # # Deploy the bundle to the 'prod' target
-      # - name: Deploy Bundle
-      #   run: databricks bundle deploy -t dev
+      # Deploy the bundle to the 'prod' target
+      - name: Deploy Bundle
+        run: databricks bundle deploy -t dev
