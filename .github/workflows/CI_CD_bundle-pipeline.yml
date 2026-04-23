@@ -10,6 +10,7 @@ jobs:
     name: "Deploy Bundle"
     runs-on: ubuntu-latest
 
+    environment: dev
     # Set authentication environment variables for the Databricks CLI
     env:
       DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
