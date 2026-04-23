@@ -10,7 +10,7 @@ resources:
       tasks:
         - task_key: run_checks
           notebook_task:
-            notebook_path: ../databricks-work/notebooks/dqx_apply_checks.ipynb
+            notebook_path: ../../notebooks/dqx_apply_checks.ipynb
             source: WORKSPACE
       queue:
         enabled: true
