@@ -7,10 +7,10 @@ include:
 targets:
   dev:
     default: true
-    mode: production
+    mode: development
     workspace:
       host: https://dbc-4b58157d-c7bb.cloud.databricks.com/
       root_path: /Workspace/bundle_deploy
-      run_as:
-        service_principal_name: 16eda81e-e3b8-457e-acc0-228dff9ef0a3
+    run_as:
+      service_principal_name: 16eda81e-e3b8-457e-acc0-228dff9ef0a3
 
